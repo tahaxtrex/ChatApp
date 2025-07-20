@@ -6,11 +6,11 @@ const router = express.Router();
 
 
 
-router.get("/auth/signup", signup)
+router.post("/auth/signup", signup)
 
-router.get("/auth/login", login)
+router.post("/auth/login", login)
 
-router.get("/auth/logout", logout)
+router.post("/auth/logout", logout)
 
 
 export default router
