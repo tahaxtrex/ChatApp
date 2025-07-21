@@ -1,5 +1,7 @@
 import express, { urlencoded } from "express";
 import authRoutes from "./routes/auth.routes.js";
+import messageRoutes from "./routes/message.route.js";
+import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import {connectDB} from "./lib/db.js"
 
@@ -11,8 +13,10 @@ app.use(express.json())
 app.use(urlencoded({
     extended:true
 }))
+app.use(cookieParser())
 
-app.use('/', authRoutes);
+app.use('/auth', authRoutes);
+app.use('/message', messageRoutes);
 
 
 try {

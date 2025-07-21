@@ -1,6 +1,7 @@
 import { generateToken } from "../lib/utils.js"
 import User from "../models/user.model.js"
 import bcrypt from "bcryptjs"
+import cloudinary from "../lib/cloudinary.js"
 
 
 export const signup = async (req, res)=>{
@@ -88,5 +89,35 @@ export const logout = (req, res)=>{
     } catch (error) {
         console.log(error.message)
         res.status(500).json({message: "error in the user creation"})
+    }
+}
+
+
+export const update = async (req, res) =>{
+    try {
+        const {profilepic} = req.body;
+        const userId = req.user._id;
+        
+        if(!profilepic){
+            return res.status(400).json({message: "profile pic required"});
+        }
+
+        const updateResponse = await cloudinary.uploader.upload(profilepic)
+        const updatedUser = await User.findByIdAndUpdate(userId, {profilepic: updateResponse.secure_url}, {new: true})
+
+        res.status(200).json({message:'profile pic updated succesfully'})
+        
+    } catch (error) {
+        console.log('an error has occured')
+    }
+}
+
+
+export const checkAuth = async (req, res)=>{
+    try {
+        res.status(200).json(req.user)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Something broke!" });
     }
 }
