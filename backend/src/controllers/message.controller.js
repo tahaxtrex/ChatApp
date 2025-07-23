@@ -14,7 +14,6 @@ export const getsidebarusers = async ()=>{
     }
 }
 
-
 export const getmessages = async (req, res)=>{ 
     try {
         const {id: userToChatId} = req.params;

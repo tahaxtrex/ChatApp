@@ -4,6 +4,8 @@ import messageRoutes from "./routes/message.route.js";
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import {connectDB} from "./lib/db.js"
+import cors from 'cors'
+
 
 const app = express();
 dotenv.config();
@@ -14,6 +16,11 @@ app.use(urlencoded({
     extended:true
 }))
 app.use(cookieParser())
+
+app.use(cors({
+  origin: "http://localhost:5173", // frontend's real domain
+  credentials: true
+}));
 
 app.use('/auth', authRoutes);
 app.use('/message', messageRoutes);
