@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Password() {
+function Password({ value, onChange, name, showpassword }) {
   return (
     <div>
       <label className="input validator">
@@ -19,15 +19,19 @@ function Password() {
             </g>
         </svg>
         <input
-            type="password"
+            type={showpassword ? "text" : "password"}
             required
+            pattern='[^\s]{8,}'
             placeholder="Password"
-            minlength="8"
+            minLength="8"
             title="Must be more than 8 characters"
+            value={value}
+            onChange={onChange}
+            name={name}
         />
         </label>
         <p className="validator-hint hidden">
-        Must be 8 characters or more
+        min 8 caracters | no spaces
         </p>
     </div>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Username() {
+function Username({ value, onChange, name }) {
   return (
     <div>
         <label className="input validator">
@@ -21,9 +21,12 @@ function Username() {
             required
             placeholder="Username"
             pattern="[A-Za-z][A-Za-z0-9\-]*"
-            minlength="3"
-            maxlength="30"
+            minLength="3"
+            maxLength="30"
             title="Only letters, numbers or dash"
+            value={value}
+            onChange={onChange}
+            name={name}
         />
         </label>
         <p className="validator-hint hidden">
