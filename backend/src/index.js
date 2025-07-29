@@ -22,6 +22,7 @@ app.use(cors({
   credentials: true
 }));
 
+
 app.use('/auth', authRoutes);
 app.use('/message', messageRoutes);
 

@@ -7,6 +7,8 @@ import Password from '../components/input/password';
 
 function Loginpage() {
 
+
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -14,8 +16,7 @@ function Loginpage() {
 
 
   const [showPassword, setShowPassword] = useState(false);
-  const {signup, isSigninup} = useAuthStore();
-  let validateForm;
+  const {login, isLoggingIn} = useAuthStore();
 
   const toggleShowPassword = ()=>{
     setShowPassword(showPassword => !showPassword)
@@ -23,6 +24,13 @@ function Loginpage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    try {
+      console.log(formData)
+      login(formData);
+    } catch (error) {
+      console.log(error);
+    }
+    
   }
 
   const handleChange = (e) => {
@@ -54,9 +62,9 @@ function Loginpage() {
             
           </div>
           <div className='flex flex-row gap-3 mt-4'>
-            <button type='submit' className="btn btn-success w-full" disabled={isSigninup}>Login !</button>
+            <button type='submit' className="btn btn-success w-full" disabled={isLoggingIn}>Login !</button>
           </div>
-          {isSigninup ? <Loader2>loading...</Loader2>: <a href="/signup" className='underline text-blue-900 mt-2'> Signup</a>}
+          {isLoggingIn ? <Loader2>loading...</Loader2>: <a href="/signup" className='underline text-blue-900 mt-2'> Signup</a>}
         </form>
         
       </div>
