@@ -9,6 +9,7 @@ import ProfilePage from "./pages/profilepage.jsx"
 import React, { useEffect } from "react"
 import { Navigate, Route, Routes } from "react-router-dom"
 import { useAuthStore } from "./store/userAuthStore.js"
+import { useThemeStore } from "./store/useThemeStore.js"
 import { LoaderCircle } from 'lucide-react'
 
 
@@ -21,13 +22,18 @@ const App = () => {
     checkAuth()
   }, [checkAuth]);
 
-  console.log({authUser});
 
   if (isCheckingAuth && !authUser) return (
     <div className=" flex items-center justify-center h-screen">
       <LoaderCircle className="size-20 animate-spin"/>
     </div>
   )
+
+  const { theme } = useThemeStore();
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   return (
     <div>
