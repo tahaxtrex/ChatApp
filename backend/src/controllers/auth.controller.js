@@ -42,7 +42,8 @@ export const signup = async (req, res)=>{
             res.status(500).json({message: "error in the user creation"})
         }
     } catch (error) {
-        res.status(400).json({message: "something went wrong"})
+        console.error("Signup error:", error.message);
+        res.status(500).json({ message: error.message || "something went wrong" });
     }
 }
 

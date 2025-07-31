@@ -17,6 +17,7 @@ import { LoaderCircle } from 'lucide-react'
 const App = () => {
 
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore()
+  const { theme } = useThemeStore();
 
   useEffect(()=>{
     checkAuth()
@@ -29,11 +30,9 @@ const App = () => {
     </div>
   )
 
-  const { theme } = useThemeStore();
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
+  // useEffect(() => {
+  //   document.documentElement.setAttribute("data-theme", theme);
+  // }, [theme]);
 
   return (
     <div>

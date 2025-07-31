@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import {connectDB} from "./lib/db.js"
 import cors from 'cors'
+import User from "./models/user.model.js"
 
 
 const app = express();

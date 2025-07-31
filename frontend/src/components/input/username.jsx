@@ -3,7 +3,7 @@ import React from 'react'
 function Username({ value, onChange, name }) {
   return (
     <div>
-        <label className="input validator">
+        <label className="input validator border-2">
         <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g
             strokeLinejoin="round"
@@ -27,6 +27,7 @@ function Username({ value, onChange, name }) {
             value={value}
             onChange={onChange}
             name={name}
+            
         />
         </label>
         <p className="validator-hint hidden">
